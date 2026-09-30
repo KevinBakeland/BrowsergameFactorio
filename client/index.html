@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Factory Game</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <div id="nameScreen">
+
+        <div id="nameBox">
+
+            <h1>Factory Game</h1>
+
+            <p>Choose your player name</p>
+
+            <input
+                id="nameInput"
+                type="text"
+                maxlength="16"
+                placeholder="Your name"
+                autocomplete="off"
+            >
+
+            <button id="startButton">
+                Start Game
+            </button>
+
+            <p id="nameError"></p>
+
+        </div>
+
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="buildMode">
+        BUILD MODE
+        <span id="buildModeText"></span>
+    </div>
+
+    <button id="inventoryButton">
+        Inventory
+    </button>
+
+    <div id="inventoryPanel">
+
+        <div id="inventoryHeader">
+
+            <h2>Inventory</h2>
+
+            <button id="closeInventory">
+                X
+            </button>
+
+        </div>
+
+        <div id="inventoryItems">
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">🌲</div>
+                    <div>
+                        <div class="itemName">Wood</div>
+                        <div class="itemAmount" id="woodAmount">0</div>
+                    </div>
+                </div>
+
+                <div class="dropControls">
+                    <input
+                        class="dropAmount"
+                        id="woodDropAmount"
+                        type="number"
+                        min="1"
+                        placeholder="Amount"
+                    >
+
+                    <button
+                        class="dropButton"
+                        data-item="wood"
+                    >
+                        Drop
+                    </button>
+                </div>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">📦</div>
+                    <div>
+                        <div class="itemName">Planks</div>
+                        <div class="itemAmount" id="planksAmount">0</div>
+                    </div>
+                </div>
+
+                <div class="dropControls">
+                    <input
+                        class="dropAmount"
+                        id="planksDropAmount"
+                        type="number"
+                        min="1"
+                        placeholder="Amount"
+                    >
+
+                    <button
+                        class="dropButton"
+                        data-item="planks"
+                    >
+                        Drop
+                    </button>
+                </div>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">⬛</div>
+                    <div>
+                        <div class="itemName">Coal</div>
+                        <div class="itemAmount" id="coalAmount">0</div>
+                    </div>
+                </div>
+
+                <div class="dropControls">
+                    <input
+                        class="dropAmount"
+                        id="coalDropAmount"
+                        type="number"
+                        min="1"
+                        placeholder="Amount"
+                    >
+
+                    <button
+                        class="dropButton"
+                        data-item="coal"
+                    >
+                        Drop
+                    </button>
+                </div>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">🟠</div>
+                    <div>
+                        <div class="itemName">Bronze</div>
+                        <div class="itemAmount" id="bronzeAmount">0</div>
+                    </div>
+                </div>
+
+                <div class="dropControls">
+                    <input
+                        class="dropAmount"
+                        id="bronzeDropAmount"
+                        type="number"
+                        min="1"
+                        placeholder="Amount"
+                    >
+
+                    <button
+                        class="dropButton"
+                        data-item="bronze"
+                    >
+                        Drop
+                    </button>
+                </div>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">⚙</div>
+                    <div>
+                        <div class="itemName">Iron</div>
+                        <div class="itemAmount" id="ironAmount">0</div>
+                    </div>
+                </div>
+
+                <div class="dropControls">
+                    <input
+                        class="dropAmount"
+                        id="ironDropAmount"
+                        type="number"
+                        min="1"
+                        placeholder="Amount"
+                    >
+
+                    <button
+                        class="dropButton"
+                        data-item="iron"
+                    >
+                        Drop
+                    </button>
+                </div>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">🔩</div>
+                    <div>
+                        <div class="itemName">Bronze Bars</div>
+                        <div class="itemAmount" id="bronzeBarAmount">0</div>
+                    </div>
+                </div>
+
+                <div class="dropControls">
+                    <input
+                        class="dropAmount"
+                        id="bronzeBarDropAmount"
+                        type="number"
+                        min="1"
+                        placeholder="Amount"
+                    >
+
+                    <button
+                        class="dropButton"
+                        data-item="bronzeBar"
+                    >
+                        Drop
+                    </button>
+                </div>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">🔥</div>
+                    <div>
+                        <div class="itemName">Oven</div>
+                        <div class="itemAmount" id="ovenAmount">0</div>
+                    </div>
+                </div>
+
+                <button
+                    class="buildButton"
+                    data-machine="oven"
+                >
+                    Build
+                </button>
+            </div>
+
+            <div class="inventoryItem">
+                <div class="itemInfo">
+                    <div class="itemIcon">⛏️</div>
+                    <div>
+                        <div class="itemName">Miner</div>
+                        <div class="itemAmount" id="minerAmount">0</div>
+                    </div>
+                </div>
+
+                <button
+                    class="buildButton"
+                    data-machine="miner"
+                >
+                    Build
+                </button>
+            </div>
+
+        </div>
+
+        <div id="craftingSection">
+
+            <h3>Crafting</h3>
+
+            <div class="recipe">
+
+                <div>
+                    <strong>2 Wood → 2 Planks</strong>
+                    <small>Basic building material</small>
+                </div>
+
+                <button
+                    class="craftButton"
+                    data-recipe="planks"
+                >
+                    Craft
+                </button>
+
+            </div>
+
+            <div class="recipe">
+
+                <div>
+                    <strong>5 Iron → Oven</strong>
+                    <small>Used to smelt bronze</small>
+                </div>
+
+                <button
+                    class="craftButton"
+                    data-recipe="oven"
+                >
+                    Craft
+                </button>
+
+            </div>
+
+            <div class="recipe">
+
+                <div>
+                    <strong>5 Bronze Bars → Miner</strong>
+                    <small>Automatically mines 1/sec</small>
+                </div>
+
+                <button
+                    class="craftButton"
+                    data-recipe="miner"
+                >
+                    Craft
+                </button>
+
+            </div>
+
+            <p id="craftMessage"></p>
+
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
