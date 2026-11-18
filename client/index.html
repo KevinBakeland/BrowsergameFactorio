@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabriek.io — kleine multiplayer Factorio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div class="panel" id="info">
+      <div class="title">⚙️ Fabriek.io <span class="phase">fase 1</span></div>
+      <div class="row"><span class="lbl">Spelers</span><span id="online">0</span></div>
+      <div class="row"><span class="lbl">FPS</span><span id="fps">–</span></div>
+      <div class="row"><span class="lbl">Zoom</span><span id="zoom">1.0x</span></div>
+    </div>
+
+    <div class="panel" id="invCraft" hidden>
+      <div class="tabs">
+        <button class="tab active" id="tabInv">Inventaris</button>
+        <button class="tab" id="tabCraft">Craften</button>
+      </div>
+      <div class="tab-content" id="invTab">
+        <div class="inv" id="inv"></div>
+      </div>
+      <div class="tab-content" id="craftTab" hidden>
+        <div id="craftSlots"></div>
+        <div class="legend">links klik = +1 in de que<br>rechtermuisklik = −1 uit de que</div>
+      </div>
+    </div>
+
+    <div class="panel" id="status" hidden>
+      <div id="miningText">Mijnen…</div>
+    </div>
+
+    <div class="panel" id="machinePanel" hidden>
+      <div class="head" id="machineTitle">Machine</div>
+      <div class="inv" id="machineSlots"></div>
+      <div class="legend" id="machineLegend" hidden></div>
+    </div>
+  </div>
+
+  <!-- bouw-hint -->
+  <div id="buildHint" hidden></div>
+
+  <!-- hotbar (machines) -->
+  <div id="hotbar"></div>
+
+  <!-- besturing -->
+  <div id="controls">
+    <b>WASD</b> bewegen &nbsp;·&nbsp; <b>klik</b> erts = minen &nbsp;·&nbsp; <b>wiel</b> zoom
+    &nbsp;·&nbsp; <b>1-6</b> machine kiezen &nbsp;·&nbsp; <b>R</b> draaien &nbsp;·&nbsp; <b>klik</b> plaatsen
+    &nbsp;·&nbsp; <b>rechtermuisknop</b> sloop/annuleer &nbsp;·&nbsp; <b>klik</b> op kist/miner = openen
+    &nbsp;·&nbsp; <b>i</b> inventaris &nbsp;·&nbsp; <b>c</b> craften &nbsp;·&nbsp; <b>y</b> chat
+  </div>
+
+  <!-- chat -->
+  <div id="chat">
+    <div id="chatMsgs"></div>
+    <input id="chatInput" maxlength="120" placeholder="Typ en druk op Enter…" autocomplete="off" />
+  </div>
+
+  <!-- join-overlay -->
+  <div id="join">
+    <div class="joinbox">
+      <h1>⚙️ Fabriek.io</h1>
+      <p>Een kleine <i>multiplayer</i> Factorio-achtige. Loop over de wereld,
+         mine <b>kolen</b>, <b>ijzererts</b>, <b>kopererts</b> en <b>steen</b>
+         en verzamel ze. Open de game in een tweede tab om samen te spelen!</p>
+      <input id="nameInput" maxlength="20" placeholder="Jouw speler-naam" />
+      <button id="joinBtn">Meedoen!</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
